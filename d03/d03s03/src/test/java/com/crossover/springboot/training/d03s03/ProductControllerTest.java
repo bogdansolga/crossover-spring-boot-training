@@ -63,6 +63,7 @@ public class ProductControllerTest extends AbstractTransactionalTestNGSpringCont
     }
 
     // a sample of using a dataProvider
+    /*
     @Test(dataProvider = "dataProvider")
     public void shouldGetAllProducts(String request, int statusCode) {
         when().get("/product", request)
@@ -76,4 +77,5 @@ public class ProductControllerTest extends AbstractTransactionalTestNGSpringCont
     public Object[][] dataProvider() {
         return null;
     }
+    */
 }
