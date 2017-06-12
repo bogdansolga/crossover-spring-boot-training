@@ -27,12 +27,14 @@ public class BeanProfilesConfig {
     }
 
     @Bean
+    @Profile(Profiles.DEV)
     public ProductRepository devProductRepository() {
         return new ProductRepository("H2");
     }
 
     @Bean
+    @Profile(Profiles.PROD)
     public ProductRepository prodProductRepository() {
-        return new ProductRepository("PostgresQL");
+        return new ProductRepository("PostgreSQL");
     }
 }
