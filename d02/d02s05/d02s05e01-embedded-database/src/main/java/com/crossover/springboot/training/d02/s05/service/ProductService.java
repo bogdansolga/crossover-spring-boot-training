@@ -12,6 +12,9 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.PostConstruct;
+import java.util.Random;
+
 @Service
 public class ProductService {
 
@@ -21,6 +24,14 @@ public class ProductService {
     @Autowired
     public ProductService(final JdbcTemplate jdbcTemplate, final ProductRepository productRepository) {
         this.jdbcTemplate = jdbcTemplate; this.productRepository = productRepository;
+    }
+
+    @PostConstruct
+    public void init() {
+        final Product product = new Product();
+        product.setName("A default product");
+        product.setPrice(new Random(500).nextInt(500));
+        create(product);
     }
 
     @Scheduled(fixedDelay = 10000)
