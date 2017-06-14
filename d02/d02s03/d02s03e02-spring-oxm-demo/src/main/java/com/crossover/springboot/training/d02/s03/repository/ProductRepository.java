@@ -19,11 +19,21 @@ public class ProductRepository {
     @PostConstruct
     public void init() {
         products.add(getDefaultProduct());
+
+        final Product product = new Product();
+        product.setId(22);
+        product.setName("iSomething");
+
+        products.add(product);
     }
 
     @SuppressWarnings("unused")
     public Product get(int id) {
-        return getDefaultProduct();
+        if (id > products.size()) {
+            throw new IllegalArgumentException("There is no product with the ID " + id);
+        }
+
+        return products.get(id);
     }
 
     public List<Product> getAll() {
