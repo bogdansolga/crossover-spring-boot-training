@@ -5,9 +5,11 @@ import com.crossover.springboot.training.d02.s03.model.Product;
 import com.crossover.springboot.training.d02.s03.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -44,9 +46,14 @@ public class ProductController {
      */
     @RequestMapping(
             method = RequestMethod.POST,
-            path = ""
+            path = "",
+            consumes = {
+                    MediaType.APPLICATION_JSON_UTF8_VALUE,
+                    MediaType.APPLICATION_XML_VALUE
+            }
     )
-    public ResponseEntity create(@RequestBody @Valid ProductDTO productDTO) {
+    public ResponseEntity create(@RequestBody @Valid ProductDTO productDTO,
+                                 @RequestHeader(name = "Content-Type") String contentType) {
         productService.create(productDTO);
         return ResponseEntity.ok(HttpStatus.OK);
     }
@@ -61,12 +68,9 @@ public class ProductController {
     @RequestMapping(
             method = RequestMethod.GET,
             path = "/{id}",
-            produces = {
-                    "application/vnd.crossover.product+json"
-            }
+            produces = MediaType.APPLICATION_JSON_UTF8_VALUE
     )
-    public ProductDTO getProduct(@PathVariable final int id, final HttpServletRequest request,
-                                 final HttpServletResponse response) {
+    public ProductDTO getProduct(@PathVariable final int id) {
         return productService.get(id);
     }
 
