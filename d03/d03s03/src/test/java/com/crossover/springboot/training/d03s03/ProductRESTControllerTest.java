@@ -37,8 +37,7 @@ public class ProductRESTControllerTest {
     }
 
     @Test
-    public void shouldAddUsers () throws Exception {
-
+    public void shouldGetProducts () throws Exception {
         MockHttpServletRequestBuilder builder =
                 MockMvcRequestBuilders.post("/product")
                                       .contentType(MediaType.APPLICATION_JSON)
