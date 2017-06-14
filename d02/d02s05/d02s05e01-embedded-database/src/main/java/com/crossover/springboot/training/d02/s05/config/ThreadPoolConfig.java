@@ -10,7 +10,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 @EnableAsync
 public class ThreadPoolConfig {
 
-    private static final int CORES = Runtime.getRuntime().availablePrcrossoverssors();
+    private static final int CORES = Runtime.getRuntime().availableProcessors();
 
     @Bean
     public ThreadPoolTaskExecutor executor() {
