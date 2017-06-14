@@ -62,7 +62,7 @@ public class ProductService {
 
     private void validateRequest(final ProductDTO productDTO) {
         Optional.ofNullable(productDTO)
-                .orElseThrow(() -> new IllegalArgumentException("Cannot prcrossoverss a null product"));
+                .orElseThrow(() -> new IllegalArgumentException("Cannot process a null product"));
     }
 
     private Product validateAndGetProduct(final int id) {
